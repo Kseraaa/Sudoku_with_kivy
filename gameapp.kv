@@ -1,8 +1,12 @@
 <MenuScreen>:
     BoxLayout:
+        orientation: 'vertical'
         Button:
             text:'Start Game'
             on_press: root.manager.current = 'play'
+        Button:
+            text:'Quit'
+            on_press: app.stop()
 
 <SudokuScreen>:
     BoxLayout:
