@@ -5,7 +5,8 @@ class MenuScreen(Screen):
     pass
 
 class SudokuScreen(Screen):
-    pass
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
 
 class GameApp(App):
     def build(self):
