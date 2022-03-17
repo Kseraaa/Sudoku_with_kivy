@@ -38,6 +38,15 @@
                 Rectangle:
                     pos: self.x, self.y  + 2 * self.height / 3 - self.line_size / 2
                     size: self.width, self.line_size
+        BoxLayout:
+            orientation: "horizontal"
+            size_hint: 1, 0.1
+            Button:
+                text: "Solve"
+            Button:
+                text: "Clear"
+            Button:
+                text: "Back"
 
 <SudokuCell>:
     text: ""
