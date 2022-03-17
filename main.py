@@ -16,6 +16,10 @@ class SudokuScreen(Screen):
             grid.add_widget(text_input)
             self.text_inputs.append(text_input)
 
+    def clear(self):
+        for text_input in self.ids["grid"].children:
+            text_input.text = ""
+
 class GameApp(App):
     def build(self):
         sm = ScreenManager()
