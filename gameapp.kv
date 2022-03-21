@@ -59,3 +59,16 @@
     input_filter: lambda text, from_undo: text if ( text.isdigit() and len(self.text) == 0 and 0 < int(text) < 10 ) else ""
     multiline: False
     cursor_color: [0, 0, 0, 0]
+
+<ErrorMessage>:
+    canvas.before:
+        Color:
+            rgb: 1, 1, 1
+        Rectangle:
+            size: self.size
+            pos: self.pos
+    text: "Incorrect"
+    pos_hint: {"center_x": 0.5, "center_y": 0.5}
+    size_hint: 0.3, 0.1
+    color: 1, 0, 0, 1
+    bold: True
