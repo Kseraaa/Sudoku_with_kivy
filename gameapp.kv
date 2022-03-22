@@ -2,13 +2,13 @@
     BoxLayout:
         orientation: 'vertical'
         Button:
-            text:'Start Game'
-            on_press: root.manager.current = 'play'
+            text:'Easy level'
+            on_press: root.manager.current = 'easy'
         Button:
             text:'Quit'
             on_press: app.stop()
 
-<SudokuScreen>:
+<SudokuScreen1>:
     canvas.before:
         Color:
             rgb: 1, 1, 1

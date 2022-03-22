@@ -7,7 +7,7 @@ from sudoku import Sudoku
 class MenuScreen(Screen):
     pass
 
-class SudokuScreen(Screen):
+class SudokuScreen1(Screen):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.text_inputs    = []
@@ -18,6 +18,46 @@ class SudokuScreen(Screen):
             text_input = SudokuCell()
             grid.add_widget(text_input)
             self.text_inputs.append(text_input)
+
+        self.text_inputs[ 0].text = "3";
+        self.text_inputs[ 1].text = "4";
+        self.text_inputs[ 3].text = "8";
+        self.text_inputs[ 4].text = "2";
+        self.text_inputs[ 5].text = "6";
+        self.text_inputs[ 7].text = "7";
+        self.text_inputs[ 8].text = "1";
+        self.text_inputs[11].text = "8";
+        self.text_inputs[15].text = "9";
+        self.text_inputs[18].text = "7";
+        self.text_inputs[19].text = "6";
+        self.text_inputs[22].text = "9";
+        self.text_inputs[25].text = "4";
+        self.text_inputs[26].text = "3";
+        self.text_inputs[28].text = "8";
+        self.text_inputs[30].text = "1";
+        self.text_inputs[32].text = "2";
+        self.text_inputs[34].text = "3";
+        self.text_inputs[37].text = "3";
+        self.text_inputs[43].text = "9";
+        self.text_inputs[46].text = "7";
+        self.text_inputs[48].text = "9";
+        self.text_inputs[50].text = "4";
+        self.text_inputs[52].text = "1";
+        self.text_inputs[54].text = "8";
+        self.text_inputs[55].text = "2";
+        self.text_inputs[58].text = "4";
+        self.text_inputs[61].text = "5";
+        self.text_inputs[62].text = "9";
+        self.text_inputs[65].text = "7";
+        self.text_inputs[69].text = "3";
+        self.text_inputs[72].text = "4";
+        self.text_inputs[73].text = "1";
+        self.text_inputs[75].text = "3";
+        self.text_inputs[76].text = "8";
+        self.text_inputs[77].text = "9";
+        self.text_inputs[79].text = "6";
+        self.text_inputs[80].text = "2";
+
     
     def get_value(self, row, col):
         text  = self.text_inputs[9 * row + col].text
@@ -48,7 +88,7 @@ class GameApp(App):
     def build(self):
         sm = ScreenManager()
         sm.add_widget(MenuScreen(name='menu'))
-        sm.add_widget(SudokuScreen(name='play'))
+        sm.add_widget(SudokuScreen1(name='easy'))
         return sm
 
 class SudokuCell(TextInput):
