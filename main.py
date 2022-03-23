@@ -4,6 +4,7 @@ from kivy.uix.textinput     import TextInput
 from kivy.uix.label         import Label
 from kivy.clock             import Clock
 from sudoku import Sudoku
+
 class MenuScreen(Screen):
     pass
 
@@ -56,8 +57,7 @@ class SudokuScreen1(Screen):
         self.text_inputs[76].text = "8";
         self.text_inputs[77].text = "9";
         self.text_inputs[79].text = "6";
-        self.text_inputs[80].text = "2";
-
+        self.text_inputs[80].text = "2"
     
     def get_value(self, row, col):
         text  = self.text_inputs[9 * row + col].text
@@ -84,11 +84,76 @@ class SudokuScreen1(Screen):
         for text_input in self.ids["grid"].children:
             text_input.text = ""
 
+class SudokuScreen2(Screen):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.text_inputs    = []
+        self.error_messages = []
+
+        grid = self.ids["grid"]
+        for i in range(81) :
+            text_input = SudokuCell()
+            grid.add_widget(text_input)
+            self.text_inputs.append(text_input)
+
+        self.text_inputs[ 1].text = "9";
+        self.text_inputs[ 5].text = "5";
+        self.text_inputs[ 7].text = "6";
+        self.text_inputs[ 9].text = "7";
+        self.text_inputs[10].text = "4";
+        self.text_inputs[15].text = "1";
+        self.text_inputs[16].text = "9";
+        self.text_inputs[23].text = "3";
+        self.text_inputs[26].text = "4";
+        self.text_inputs[28].text = "3";
+        self.text_inputs[30].text = "6";
+        self.text_inputs[31].text = "2";
+        self.text_inputs[34].text = "5";
+        self.text_inputs[46].text = "6";
+        self.text_inputs[49].text = "3";
+        self.text_inputs[50].text = "9";
+        self.text_inputs[52].text = "7";
+        self.text_inputs[57].text = "1";
+        self.text_inputs[64].text = "1";
+        self.text_inputs[65].text = "6";
+        self.text_inputs[70].text = "4";
+        self.text_inputs[71].text = "5";
+        self.text_inputs[73].text = "2";
+        self.text_inputs[75].text = "9";
+        self.text_inputs[79].text = "1";
+
+    def get_value(self, row, col):
+        text  = self.text_inputs[9 * row + col].text
+        return int(text) if len(text) > 0 else 0
+
+    def solve(self):
+        values = [[self.get_value(row, col) for col in range(9)] for row in range(9)]
+        solver = Sudoku(values)
+        if solver.solve():
+            for row in range(9):
+                for col in range(9):
+                    self.text_inputs[9 * row + col].text = str(solver.get_value(row, col))
+
+        else:
+            error_message = ErrorMessage()
+            self.error_messages.append(error_message)
+            self.add_widget(error_message)
+            Clock.schedule_once(self.remove_error_message, 2)
+
+    def remove_error_message(self, dt):
+        error_message = self.error_messages.pop()
+        self.remove_widget(error_message)
+
+    def clear(self):
+        for text_input in self.ids["grid"].children:
+            text_input.text = ""
+
 class GameApp(App):
     def build(self):
         sm = ScreenManager()
         sm.add_widget(MenuScreen(name='menu'))
         sm.add_widget(SudokuScreen1(name='easy'))
+        sm.add_widget(SudokuScreen2(name='medium'))
         return sm
 
 class SudokuCell(TextInput):
