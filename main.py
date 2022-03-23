@@ -148,12 +148,68 @@ class SudokuScreen2(Screen):
         for text_input in self.ids["grid"].children:
             text_input.text = ""
 
+class SudokuScreen3(Screen):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.text_inputs    = []
+        self.error_messages = []
+
+        grid = self.ids["grid"]
+        for i in range(81) :
+            text_input = SudokuCell()
+            grid.add_widget(text_input)
+            self.text_inputs.append(text_input)
+
+        self.text_inputs[ 1].text = "6";
+        self.text_inputs[ 2].text = "8";
+        self.text_inputs[ 6].text = "3";
+        self.text_inputs[12].text = "1";
+        self.text_inputs[21].text = "3";
+        self.text_inputs[24].text = "7";
+        self.text_inputs[27].text = "5";
+        self.text_inputs[28].text = "2";
+        self.text_inputs[35].text = "4";
+        self.text_inputs[38].text = "1";
+        self.text_inputs[41].text = "6";
+        self.text_inputs[42].text = "8";
+        self.text_inputs[66].text = "4";
+        self.text_inputs[69].text = "5";
+        self.text_inputs[76].text = "1";
+        self.text_inputs[79].text = "6";
+
+    def get_value(self, row, col):
+        text  = self.text_inputs[9 * row + col].text
+        return int(text) if len(text) > 0 else 0
+
+    def solve(self):
+        values = [[self.get_value(row, col) for col in range(9)] for row in range(9)]
+        solver = Sudoku(values)
+        if solver.solve():
+            for row in range(9):
+                for col in range(9):
+                    self.text_inputs[9 * row + col].text = str(solver.get_value(row, col))
+
+        else:
+            error_message = ErrorMessage()
+            self.error_messages.append(error_message)
+            self.add_widget(error_message)
+            Clock.schedule_once(self.remove_error_message, 2)
+
+    def remove_error_message(self, dt):
+        error_message = self.error_messages.pop()
+        self.remove_widget(error_message)
+
+    def clear(self):
+        for text_input in self.ids["grid"].children:
+            text_input.text = ""
+
 class GameApp(App):
     def build(self):
         sm = ScreenManager()
         sm.add_widget(MenuScreen(name='menu'))
         sm.add_widget(SudokuScreen1(name='easy'))
         sm.add_widget(SudokuScreen2(name='medium'))
+        sm.add_widget(SudokuScreen3(name='hard'))
         return sm
 
 class SudokuCell(TextInput):
