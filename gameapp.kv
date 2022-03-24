@@ -1,17 +1,41 @@
+#:import COLOR kivy.utils.get_color_from_hex
+#:set R "#F94A69"
+#:set G "#8bc34a"
+#:set Y "#ffc400"
+#:set B "#03a9f4"
+
+
 <MenuScreen>:
     BoxLayout:
         orientation: 'vertical'
+        Label:
+            text:'Sudoku game to play'
+            font_size: 50
+            font_name: "Comic"
+
         Button:
-            text:'Easy level'
+            text:'easy level'
+            font_size: 25
+            font_name:"Comic"
             on_press: root.manager.current = 'easy'
+            background_color:COLOR(G)
+
         Button:
             text:'meduim level'
-            on_press: root.manager.current = 'medium'
+            font_size: 25
+            font_name:"Comic"
+            on_press: root.manager.current = 'meduim'
+            background_color:COLOR(Y)
         Button:
             text:'hard level'
+            font_size: 25
+            font_name:"Comic"
             on_press: root.manager.current = 'hard'
+            background_color:COLOR(R)
         Button:
             text:'Quit'
+            font_size: 25
+            font_name:"Comic"
             on_press: app.stop()
 
 <SudokuScreen1>:
