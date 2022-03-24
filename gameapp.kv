@@ -21,10 +21,10 @@
             background_color:COLOR(G)
 
         Button:
-            text:'meduim level'
+            text:'medium level'
             font_size: 25
             font_name:"Comic"
-            on_press: root.manager.current = 'meduim'
+            on_press: root.manager.current = 'medium'
             background_color:COLOR(Y)
         Button:
             text:'hard level'
@@ -73,13 +73,22 @@
             size_hint: 1, 0.1
             Button:
                 text: "Solve"
+                font_name:"Comic"
                 on_press: root.solve()
+                background_color:COLOR(B)
+                font_size: 17
             Button:
                 text: "Clear"
+                font_name:"Comic"
                 on_press: root.clear()
+                background_color:COLOR(B)
+                font_size: 17
             Button:
                 text: "Back"
+                font_name:"Comic"
                 on_press: root.manager.current = 'menu'
+                background_color:COLOR(B)
+                font_size: 17
 
 <SudokuScreen2>:
     canvas.before:
@@ -117,13 +126,18 @@
             Button:
                 text: "Solve"
                 on_press: root.solve()
+                background_color:COLOR(B)
+                font_size: 17
             Button:
                 text: "Clear"
                 on_press: root.clear()
+                background_color:COLOR(B)
+                font_size: 17
             Button:
                 text: "Back"
                 on_press: root.manager.current = 'menu'
-
+                background_color:COLOR(B)
+                font_size: 17
 <SudokuScreen3>:
     canvas.before:
         Color:
@@ -160,12 +174,18 @@
             Button:
                 text: "Solve"
                 on_press: root.solve()
+                background_color:COLOR(B)
+                font_size: 17
             Button:
                 text: "Clear"
                 on_press: root.clear()
+                background_color:COLOR(B)
+                font_size: 17
             Button:
                 text: "Back"
                 on_press: root.manager.current = 'menu'
+                background_color:COLOR(B)
+                font_size: 17
 
 <SudokuCell>:
     text: ""
