@@ -79,11 +79,7 @@ class SudokuScreen1(Screen):
     def remove_error_message(self, dt):
         error_message = self.error_messages.pop()
         self.remove_widget(error_message)
-
-    def clear(self):
-        for text_input in self.ids["grid"].children:
-            text_input.text = ""
-
+        
 class SudokuScreen2(Screen):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -144,10 +140,6 @@ class SudokuScreen2(Screen):
         error_message = self.error_messages.pop()
         self.remove_widget(error_message)
 
-    def clear(self):
-        for text_input in self.ids["grid"].children:
-            text_input.text = ""
-
 class SudokuScreen3(Screen):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -198,10 +190,6 @@ class SudokuScreen3(Screen):
     def remove_error_message(self, dt):
         error_message = self.error_messages.pop()
         self.remove_widget(error_message)
-
-    def clear(self):
-        for text_input in self.ids["grid"].children:
-            text_input.text = ""
 
 class GameApp(App):
     def build(self):
