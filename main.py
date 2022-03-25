@@ -9,6 +9,7 @@ class MenuScreen(Screen):
     pass
 
 class SudokuScreen1(Screen):
+    # ป้อนข้อความ
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.text_inputs    = []
@@ -59,12 +60,15 @@ class SudokuScreen1(Screen):
         self.text_inputs[79].text = "6";
         self.text_inputs[80].text = "2"
     
+    # คืนค่า 0 หากไม่มีการระบุค่า
     def get_value(self, row, col):
         text  = self.text_inputs[9 * row + col].text
         return int(text) if len(text) > 0 else 0
 
     def solve(self):
+        # อ่านค่าจากในช่อง
         values = [[self.get_value(row, col) for col in range(9)] for row in range(9)]
+        # พยายามแก้โจทย์
         solver = Sudoku(values)
         if solver.solve():
             for row in range(9):
@@ -76,6 +80,7 @@ class SudokuScreen1(Screen):
             self.add_widget(error_message)
             Clock.schedule_once(self.remove_error_message, 2)
 
+    # ลบ eorror massege บนจอ
     def remove_error_message(self, dt):
         error_message = self.error_messages.pop()
         self.remove_widget(error_message)

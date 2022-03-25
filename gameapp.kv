@@ -4,15 +4,16 @@
 #:set Y "#ffc400"
 #:set B "#03a9f4"
 
-
+# หน้าเมนู
 <MenuScreen>:
     BoxLayout:
         orientation: 'vertical'
+        # ชื่อเกมส์
         Label:
             text:'Sudoku game to play'
             font_size: 50
             font_name: "Comic"
-
+        # ปุ่มต่าง ๆ
         Button:
             text:'easy level'
             font_size: 25
@@ -38,6 +39,7 @@
             font_name:"Comic"
             on_press: app.stop()
 
+# หน้า easy level
 <SudokuScreen1>:
     canvas.before:
         Color:
@@ -45,6 +47,7 @@
         Rectangle:
             pos: self.pos
             size: self.size
+    # สร้างตาราง
     BoxLayout:
         orientation: "vertical"
         size: root.size
@@ -68,6 +71,7 @@
                 Rectangle:
                     pos: self.x, self.y  + 2 * self.height / 3 - self.line_size / 2
                     size: self.width, self.line_size
+        # ปุ่มต่าง ๆ 
         BoxLayout:
             orientation: "horizontal"
             size_hint: 1, 0.1
@@ -84,6 +88,7 @@
                 background_color:COLOR(B)
                 font_size: 17
 
+# หน้า medium level
 <SudokuScreen2>:
     canvas.before:
         Color:
@@ -127,6 +132,8 @@
                 on_press: root.manager.current = 'menu'
                 background_color:COLOR(B)
                 font_size: 17
+
+# หน้า hard level
 <SudokuScreen3>:
     canvas.before:
         Color:
@@ -171,6 +178,7 @@
                 background_color:COLOR(B)
                 font_size: 17
 
+# ข้อความและช่อง
 <SudokuCell>:
     text: ""
     font_size: 0.7 * self.width
@@ -179,6 +187,7 @@
     multiline: False
     cursor_color: [0, 0, 0, 0]
 
+# กรอบขึ้นเตือนเมื่อผิด หรือ เฉลยไม่ได้
 <ErrorMessage>:
     canvas.before:
         Color:
