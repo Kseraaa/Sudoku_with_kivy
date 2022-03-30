@@ -38,3 +38,9 @@ class Sudoku_Test(unittest.TestCase):
         res = sudo.get_value(5, 5) #เอาrow5col5
         res = sudo.solve()
         self.assertTrue(res)
+
+    def test_sudoku_6(self):
+        sudo = Sudoku([[0 for col in range(9)] for row in range(9)]) #set0ทั้งตารางไม่มีช่องว่าง
+        res = sudo.get_value(1, 1) #เอาrow1col1
+        res = sudo.solve()
+        self.assertTrue(res)
