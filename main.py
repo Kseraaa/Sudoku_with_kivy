@@ -9,7 +9,7 @@ class MenuScreen(Screen):
     pass
 
 class SudokuScreen1(Screen):
-    # ป้อนข้อความ
+    # กำหนดโจทย์
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.text_inputs    = []
